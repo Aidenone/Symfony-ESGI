@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	Titre : {{article.title}} <br>
+	Content : {{article.content}} <br>
+	<a href="/article/edit/{{article.id}}">edit</a><br>
+
+
+{% endblock %}
