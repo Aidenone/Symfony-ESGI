@@ -1,6 +1,6 @@
 <?php
  
-namespace App\Controller;
+namespace App\Controller\Back;
  
 use App\Entity\Article;
 use App\Form\ArticleType;
@@ -21,12 +21,10 @@ class ArticleController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $articles = $em->getRepository(Article::class)->findAll();
  
-        return $this->render('Article/index.html.twig', [
+        return $this->render('Article/Back/index.html.twig', [
             'articles' => $articles
         ]);
     }
- 
- 
  
     /**
      * @Route("/new", methods={"GET", "POST"})
@@ -45,10 +43,10 @@ class ArticleController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
  
-            return $this->redirectToRoute('app_article_index');
+            return $this->redirectToRoute('app_back_article_index');
         }
  
-        return $this->render('Article/new.html.twig', [
+        return $this->render('Article/Back/new.html.twig', [
             'Article' => $article,
             'form' => $form->createView(),
         ]);
@@ -69,10 +67,10 @@ class ArticleController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
  
-            return $this->redirectToRoute('app_article_show', ['id' => $article->getId()]);
+            return $this->redirectToRoute('app_back_article_show', ['id' => $article->getId()]);
         }
  
-        return $this->render('Article/edit.html.twig', [
+        return $this->render('Article/Back/edit.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);
@@ -89,7 +87,7 @@ class ArticleController extends AbstractController
     	$em = $this->getDoctrine()->getManager();        
     	$article = $em->getRepository(Article::class)->find($id);
 
-        return $this->render('Article/show.html.twig', [
+        return $this->render('Article/Back/show.html.twig', [
             'article' => $article,
         ]);
     }
@@ -111,7 +109,7 @@ class ArticleController extends AbstractController
         //hard delete
         $em->remove($article);
         $em->flush();
-        return $this->redirectToRoute('app_article_index');
+        return $this->redirectToRoute('app_back_article_index');
     }
 
 }

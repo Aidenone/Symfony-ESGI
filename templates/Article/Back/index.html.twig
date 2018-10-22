@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<a href="{{ path('app_back_article_new') }}">Ajouter un article</a> <br><br>
+	Liste de mes articles : <br>
+	
+	{% for article in articles %}
+		<a href="{{ path('app_back_article_show', {'id': article.id}) }}">{{article.title}}</a>
+		<a href="{{ path('app_back_article_delete', {'id': article.id, '_token':'csrf token'}) }}">Supprimer</a>
+		<a href="{{ path('app_back_article_edit', {'id': article.id}) }}">Edit</a> <br>
+	{% endfor %}
+{% endblock %}

@@ -32,6 +32,13 @@ class Article
      * @ORM\Column(type="string", nullable=true)
      */
     private $slug = null;
+
+    /**
+     * @var Tag
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tag")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tag;
  
     /**
      * @var string
@@ -64,6 +71,25 @@ class Article
     {
         $this->title = $title;
         return $this;
+    }
+
+    /**
+     * @param string $tag
+     *
+     * @return Article
+     */
+    public function setTag(string $tag): Article
+    {
+        $this->tag = $tag;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTag(): string
+    {
+        return $this->tag;
     }
  
     /**
