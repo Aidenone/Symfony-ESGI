@@ -93,4 +93,25 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
+
+    /**
+     * @Route("/delete/{id}", methods={"GET"})
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function delete(Request $request, Article $article)
+    {
+        if ($this->isCsrfTokenValid('delete-item', $request->query->get('_token')))
+        {
+            throw new AccessDeniedException('Erreur csrf');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        //hard delete
+        $em->remove($article);
+        $em->flush();
+        return $this->redirectToRoute('app_article_index');
+    }
+
 }
