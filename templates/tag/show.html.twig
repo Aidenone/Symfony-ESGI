@@ -11,6 +11,9 @@
                 <th>Id</th>
                 <td>{{ tag.id }}</td>
             </tr>
+            {% for article in tag.articles %}
+                {{ article.id }}<br>
+            {% endfor %}
             <tr>
                 <th>Title</th>
                 <td>{{ tag.title }}</td>

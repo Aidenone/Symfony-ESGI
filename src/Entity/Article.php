@@ -78,7 +78,7 @@ class Article
      *
      * @return Article
      */
-    public function setTag(string $tag): Article
+    public function setTag(?Tag $tag): self
     {
         $this->tag = $tag;
         return $this;
@@ -87,7 +87,7 @@ class Article
     /**
      * @return string
      */
-    public function getTag(): string
+    public function getTag(): ?Tag
     {
         return $this->tag;
     }
